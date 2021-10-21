@@ -21,7 +21,7 @@ pipeline {
     stage("Build") {
       steps {
         echo "Building"
-        replaceString()
+        hello()
       }
     }
     stage("Test") {
