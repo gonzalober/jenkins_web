@@ -23,9 +23,10 @@ pipeline {
     parallel {
       stage('test replaceString Fx') {
         steps {
-          Document doc = Jsoup.parse(index.html);
-          String fileContents = new File('index.html').text
-          if(fileContents == "Deployed by Jenkins job:") return true
+          pDOM.small.findAll{
+          String[] text = it.localText();
+          }
+          if(text[0].equals("Deployed by Jenkins job") == "Deployed by Jenkins job:") return true
         }
       }
 
