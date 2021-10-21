@@ -13,9 +13,9 @@ pipeline {
       steps {
         echo "Building"
         helloVariable("Gonzalo")
-        // script {
-        //   utils.replaceString()
-        // }
+        script {
+          utils.replaceString()
+        }
       }
     }
 
