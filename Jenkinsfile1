@@ -1,0 +1,26 @@
+pipeline {
+  agent any
+
+  options {
+    timestamps()
+  }
+  stages {
+
+    stage("Build") {
+      steps {
+        echo "this is a step in my first stage"
+      }
+    }
+
+    stage('print env variables') {
+          steps {
+            sh "print env"
+          }
+
+    stage('print env variables') {
+          steps {
+            sh "print env"
+          }
+  }
+
+}

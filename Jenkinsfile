@@ -5,11 +5,32 @@ pipeline {
     timestamps()
   }
   stages {
-    stage("My first stage") {
+
+    stage("Build") {
       steps {
-        echo "this is a step in my first stage"
+        echo "Build"
       }
     }
+
+    stage('test on linux') {
+      steps {
+        echo "test"
+    }
+
+     stage('test on window') {
+      steps {
+        echo "test"
+    }
+
+    stage('deploy') {
+      steps {
+        echo "deploy"
+    }
+
+    stage('print env variables') {
+        steps {
+            echo "print env variables"
+        }
   }
 
 }
