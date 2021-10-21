@@ -1,44 +1,46 @@
-@Library('jenkins_shared') _
 
-pipeline {
-  agent any
+@Library("Jenkins_shared") _
 
-  options {
-    timestamps()
-  }
 
-  stages {
-
-    stage("Build") {
-      steps {
-        echo "Building"
-        helloVariable("Gonzalo")
-        // script {
-        //   utils.replaceString()
-        // }
-      }
-    }
-
-    stage("Test"){
-      steps {
-          sh """
-          cat index.html | grep “Deployed by Jenkins job: ${BUILD_NUMBER}”
-          """
-      }
-    }
-
-    stage('deploy') {
-      steps {
-        echo "deploying"
-      }
-    }
-
-    stage('print env variables') {
-        steps {
-            echo "print env variables"
+pipeline{
+    agent any
+    stages{
+        stage("Build"){
+            steps{
+                echo "Build"
+                helloVariable("Fin")
+                script{
+                    utils.replaceString()
+                }
+            }
+        }
+        
+      stage("Test"){
+           steps {
+               sh """
+               cat index.html | grep "Deployed by Jenkins job: ${BUILD_NUMBER}"
+               """
+            }
+        }
+        
+      stage("testing branches"){
+          parallel{
+            stage("Test on linux"){
+                steps{
+                    echo "Linux"
+                }
+            }
+            stage("Test on windows"){
+                steps{
+                    echo "Windows"
+                }
+            }
+          }
+       } 
+        stage("Deploy"){
+            steps{
+                echo "Deploy"
+            }
         }
     }
-
-  }
-
 }
