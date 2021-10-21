@@ -13,19 +13,19 @@ pipeline {
       steps {
         echo "Building"
         helloVariable("Gonzalo")
-        script {
-          utils.replaceString()
-        }
+        // script {
+        //   utils.replaceString()
+        // }
       }
     }
 
-    // stage("Test"){
-    //        steps {
-    //            sh """
-    //            cat index.html | grep “Deployed by Jenkins job: ${BUILD_NUMBER}”
-    //            """
-    //         }
-    // }
+    stage("Test"){
+      steps {
+          sh """
+          cat index.html | grep “Deployed by Jenkins job: ${BUILD_NUMBER}”
+          """
+      }
+    }
 
     stage('deploy') {
       steps {
