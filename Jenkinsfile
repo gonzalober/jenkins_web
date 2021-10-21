@@ -24,8 +24,8 @@ pipeline {
       stage('test replaceString Fx') {
         steps {
           Document doc = Jsoup.parse(index.html);
-          Elements p = doc.getElementsByTag("p");
-          if(p == "Deployed by Jenkins job:") return true
+          String fileContents = new File('index.html').text
+          if(fileContents == "Deployed by Jenkins job:") return true
         }
       }
 
