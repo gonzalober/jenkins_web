@@ -23,10 +23,9 @@ pipeline {
     parallel {
       stage('test replaceString Fx') {
         steps {
-          pDOM.small.findAll{
-          String[] text = it.localText();
-          }
-          if(text[0].equals("Deployed by Jenkins job") == "Deployed by Jenkins job:") return true
+          sh """
+            cat index.html | grep "Deployed by Jenkins job: ${BUILD_NUMBER}"
+          """
         }
       }
 
