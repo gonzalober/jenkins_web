@@ -1,6 +1,5 @@
 @Library('jenkins_shared') _
 
-
 pipeline {
   agent any
 
@@ -13,8 +12,13 @@ pipeline {
       steps {
         echo "Building"
         helloVariable("Gonzalo")
+        script {
+          utils.pintFromFunction()
+        }
       }
     }
+
+
     stage("Test") {
     parallel {
       stage('test on linux') {
