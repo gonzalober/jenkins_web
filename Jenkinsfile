@@ -8,13 +8,14 @@ pipeline {
 
     stage("Build") {
       steps {
-        echo "Build"
+        echo "Building"
       }
     }
 
     stage('test on linux') {
       steps {
         echo "test"
+      }
     }
 
      stage('test on window') {
@@ -24,7 +25,7 @@ pipeline {
 
     stage('deploy') {
       steps {
-        echo "deploy"
+        echo "deploying"
     }
 
     stage('print env variables') {
