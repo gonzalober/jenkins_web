@@ -21,7 +21,7 @@ pipeline {
     stage("Build") {
       steps {
         echo "Building"
-        hello("Gonzalo")
+        helloVariable("Gonzalo")
       }
     }
     stage("Test") {
