@@ -6,6 +6,7 @@ pipeline {
   options {
     timestamps()
   }
+  
   stages {
 
     stage("Build") {
@@ -20,7 +21,7 @@ pipeline {
 
 
     stage("Test") {
-    parallel {
+   
       stage('test replaceString Fx') {
         steps {
           sh """
@@ -29,12 +30,7 @@ pipeline {
         }
       }
 
-      stage('test on window') {
-        steps {
-          echo "test"
-        }
-      }
-     }
+     
     }
 
     stage('deploy') {
