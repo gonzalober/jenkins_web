@@ -13,7 +13,7 @@ pipeline {
         echo "Building"
         helloVariable("Gonzalo")
         script {
-          utils.printFromFunction()
+          utils.replaceString()
         }
       }
     }
@@ -21,9 +21,11 @@ pipeline {
 
     stage("Test") {
     parallel {
-      stage('test on linux') {
+      stage('test replaceString Fx') {
         steps {
-          echo "test"
+          Document doc = Jsoup.parse(index.html);
+          Elements p = doc.getElementsByTag("p");
+          if(p == "Deployed by Jenkins job:") return true
         }
       }
 
