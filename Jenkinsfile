@@ -8,9 +8,9 @@ pipeline{
             steps{
                 echo "Build"
                 helloVariable("Fin")
-                // script{
-                //     utils.replaceString()
-                // }
+                script {
+                    utils.replaceString()
+                }
             }
         }
         
