@@ -12,10 +12,13 @@ pipeline {
       steps {
         echo "Building"
         helloVariable("Gonzalo")
+        script {
+          utils.printFromFunction()
+        }
       }
     }
 
-    
+
     stage("Test") {
     parallel {
       stage('test on linux') {
