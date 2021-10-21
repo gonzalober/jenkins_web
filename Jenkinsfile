@@ -6,7 +6,7 @@ pipeline {
   options {
     timestamps()
   }
-  
+
   stages {
 
     stage("Build") {
@@ -21,16 +21,11 @@ pipeline {
 
 
     stage("Test") {
-   
-      stage('test replaceString Fx') {
         steps {
           sh """
             cat index.html | grep "Deployed by Jenkins job: ${BUILD_NUMBER}"
           """
         }
-      }
-
-     
     }
 
     stage('deploy') {
