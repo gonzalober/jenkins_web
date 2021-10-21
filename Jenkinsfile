@@ -1,3 +1,7 @@
+def printFromFunction() {
+  println("I am printing from a function")
+}
+
 pipeline {
   agent any
 
@@ -9,6 +13,7 @@ pipeline {
     stage("Build") {
       steps {
         echo "Building"
+        printFromFunction()
       }
     }
     stage("Test") {
