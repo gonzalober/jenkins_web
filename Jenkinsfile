@@ -3,17 +3,32 @@
 
 pipeline{
     agent any
+
+    options {
+      timestamps()
+    }
+
+    environment {
+      MYENVVAR = "testenvar"
+    }
+
+    parameters {
+      string(name: 'Name', defaultValue: 'Gonzalo', description: 'Your name')
+    }
+
     stages{
         stage("Build"){
             steps{
-                echo "Build"
+                echo "Building"
+                echo "${MYENVVAR}"
+                echo "${params.Name}"
                 helloVariable("Fin")
                 script {
                     utils.replaceString()
                 }
             }
         }
-        
+      
         stage("Test"){
           parallel{
             stage("tests index grep") {
