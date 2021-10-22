@@ -36,17 +36,17 @@ pipeline{
         stage("Docker Build"){
           agent {
             docker {
-              image: "node: latest"
-              args: "-v ${WORKSPACE}/docker:/home/node"
+              image "node:latest"
+              args "-v ${WORKSPACE}/docker:/home/node"
             }
           }
-        }
-            steps{
+        
+          steps {
                 sh """
                   node --version>/home/node/docker_node_version
                   npm --version>/home/node/docker_npm_version
-                """
-            }
+                 """
+          }
         }
 
         stage("Test"){
@@ -72,14 +72,14 @@ pipeline{
                   sshPublisher(publishers: [sshPublisherDesc(configName: 'http', transfers: [sshTransfer(cleanRemote: false, excludes: '', execCommand: 'mv index.html /var/www/html', execTimeout: 120000, flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', remoteDirectory: '', remoteDirectorySDF: false, removePrefix: '', sourceFiles: 'index.html')], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: false)])
             }
         }
+      }
     }
+  
     post {
       always {
         archiveArtifacts artifacts: 'index.html', followSymlinks: false
       }
     }
 }
-      // cleanup{
-      //   cleanWs()
-      // }
+     
     
