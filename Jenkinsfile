@@ -37,6 +37,7 @@ pipeline{
               args: "-v ${WORKSPACE}/docker:/home/node"
             }
           }
+        }
             steps{
                 sh """
                   node --version>/home/node/docker_node_version
@@ -74,8 +75,8 @@ pipeline{
         archiveArtifacts artifacts: 'index.html', followSymlinks: false
       }
     }
+}
       // cleanup{
       //   cleanWs()
       // }
     
-}
