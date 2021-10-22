@@ -29,7 +29,22 @@ pipeline{
                 }
             }
         }
-      
+
+        stage("Docker Build"){
+          agent {
+            docker {
+              image: "node: latest"
+              args: "-v ${WORKSPACE}/docker:/home/node"
+            }
+          }
+            steps{
+                sh """
+                  node --version>/home/node/docker_node_version
+                  npm --version>/home/node/docker_npm_version
+                """
+            }
+        }
+
         stage("Test"){
           parallel{
             stage("tests index grep") {
@@ -58,8 +73,8 @@ pipeline{
       always {
         archiveArtifacts artifacts: 'index.html', followSymlinks: false
       }
-      cleanup{
-        cleanWs()
-      }
+      // cleanup{
+      //   cleanWs()
+      // }
     }
 }
