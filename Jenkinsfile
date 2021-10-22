@@ -10,6 +10,7 @@ pipeline{
 
     environment {
       MYENVVAR = "testenvar"
+      GITHUB = credentials("github")
     }
 
     parameters {
