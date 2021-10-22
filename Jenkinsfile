@@ -94,6 +94,9 @@ pipeline{
         archiveArtifacts artifacts: 'index.html', followSymlinks: false
       }
     }
+    cleanup{
+      cleanWs()
+    }
 }
      
     
